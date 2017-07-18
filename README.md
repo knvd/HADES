@@ -5,7 +5,8 @@ RSA is a Secure Encryption algorithm but Using RSA algorithm for data encryption
 This Hybrid Algorithm uses RSA enc. to encrypt the private key of user and Applies normal round encryption to the data with round specific keys generated from the user private key. On decryption User provides the RSA encrypted key which is decrypted and data is decrypted like the encryption process. 
 The user can choose no. of rounds to be performed at the cost of time. Currently the options include 2, 4 ,8, 12 and 16 rounds. 
 As of now(18 Jul 2017), The Project includes 4 classes.
-    1. start class: this class includes the main() function. In this class user gets a command line interface to choose     options.The five options include Encrypt a file, Decrypt a file, Open a file, Delete a file and Exit.
+   
+   1. start class: this class includes the main() function. In this class user gets a command line interface to choose     options.The five options include Encrypt a file, Decrypt a file, Open a file, Delete a file and Exit.
     
     2. EncDec class: This class includes 02 functions ,each for encryption and Decryption.
     
