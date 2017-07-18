@@ -70,13 +70,14 @@ public class start {
 				dirname=chscanner.next();
 				chk=FunctionSet.check(dirname);
 				}while(chk!=2);
-					
+				
+				 String regex = "[0-9]+";		//string to make sure key contains only numbers		
 				do{
 				System.out.println("Enter Your Encrypted Private Key of the file:");
 				key=chscanner.nextLine();
-				if(key.length()<16)
-				System.out.println("\t\t--Key Size must be > 500!");
-				}while(key.length()<500);
+				if(key.length()<500)
+				System.out.println("\t----Encrypted-Key Size must be > 500 and Must only contain Numeric Values!");
+				}while(key.length()<500&&key.matches(regex));
 		
 				BigInteger Deckey=RsaFunctionClass.EncDec(key, RsaFunctionClass.d);	//UNHANDLED>> make regex seq for key in EncDec fxn 
 				//key=RsaFunctionClass.BytesToStr(bkey);	//DEV..F
