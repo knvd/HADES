@@ -1,5 +1,6 @@
 # HybridEncryptionAlgorithm
 A hybrid Encryption/Decryption Algorithm implementing both DES and RSA algorithm.
+
 RSA is a Secure Encryption algorithm but Using RSA algorithm for data encryption is a time consuming process a it is 10x slower than normal DES.
 This Hybrid Algorithm uses RSA enc. to encrypt the private key of user and Applies normal round encryption to the data with round specific keys generated from the user private key. On decryption User provides the RSA encrypted key which is decrypted and data is decrypted like the encryption process. 
 The user can choose no. of rounds to be performed at the cost of time. Currently the options include 2, 4 ,8, 12 and 16 rounds. 
