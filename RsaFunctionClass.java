@@ -115,8 +115,7 @@ public class RsaFunctionClass {
 	    // Can be used for encryption (with public key e) or decryption (with private key).
 	 	static public BigInteger EncDec(String key, BigInteger e_d) 
 	 	{
-	 			//REMINDER--make regex to accept only no. sequence of key to be accepted;;use key.matches()
-	 		
+	 			
 	 		BigInteger cmessage=new BigInteger(key);
 	 		return modpow(cmessage, e_d, n);
 	 	}
