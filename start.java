@@ -79,7 +79,7 @@ public class start {
 				System.out.println("\t----Encrypted-Key Size must be > 500 and Must only contain Numeric Values!");
 				}while(key.length()<500&&key.matches(regex));
 		
-				BigInteger Deckey=RsaFunctionClass.EncDec(key, RsaFunctionClass.d);	//UNHANDLED>> make regex seq for key in EncDec fxn 
+				BigInteger Deckey=RsaFunctionClass.EncDec(key, RsaFunctionClass.d);	
 				//key=RsaFunctionClass.BytesToStr(bkey);	//DEV..F
 				//System.out.println("Decrypted Private key is:"+key);			
 				key=Deckey.toString();
