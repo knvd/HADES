@@ -37,7 +37,7 @@ public class start {
 				do{
 				System.out.println("Enter Your Private Key (length>16), REMEMBER it for Decryption:");
 				key=chscanner.nextLine();
-				if(key.length()<16)
+				if(key.length()<10)
 					System.out.println("\t\t--Private Key Size should be > 10!--");
 				}while(key.length()<10);
 				
