@@ -1,4 +1,4 @@
-/* This Class Contains 08 Functions:
+/* This Class Contains 09 Functions:
 	 * XOR function
 	 * Shuffle Function
 	 * file/DIR check function
@@ -7,6 +7,7 @@
 	 * delencf function
 	 * shiftkey function
 	 * rounds function
+	 * EstimateTime function
 	 */
 	import java.io.File;
 	import java.io.IOException;
@@ -150,7 +151,9 @@ public static void rounds(RandomAccessFile in,RandomAccessFile out,String key,in
 	
 	int round=0,ch=0;
 	String roundname="";
-	System.out.println("Enter Mode:\n1.FAST(2 Round Enc/Dec)\t\t2.FASTER(4-R E/D)\t\t3.STANDARD(8-R E/D)\n4.STANDARD-Plus(12-R E/D)\t\t5.EXPRESS(16-R E/D)\n\tMore the rounds,Slower the Process!\n\tUse Same Mode for Enc. and Dec. of the same File.");
+	System.out.println("=========================================================================");
+	System.out.println("Enter Mode:\n1.FAST(2 Round Enc/Dec)\t\t--Estimated Time Required: "+EstTime(in,2)+" minutes.\n2.FASTER(4-R E/D)\t\t--Estimated Time Required: "+EstTime(in,4)+" minutes.\n3.STANDARD(8-R E/D)\t\t--Estimated Time Required: "+EstTime(in,8)+" minutes.\n4.STANDARD-Plus(12-R E/D)\t--Estimated Time Required: "+EstTime(in,12)+" minutes.\n5.EXPRESS(16-R E/D)\t\t--Estimated Time Required: "+EstTime(in,16)+" minutes.\n\t\tUse Same Mode for Decryption with which the File was ENcrypted!");
+	System.out.println("=========================================================================");
 	if(obj.inscan.hasNextInt())
 		ch=obj.inscan.nextInt();
 	
@@ -198,6 +201,32 @@ public static void rounds(RandomAccessFile in,RandomAccessFile out,String key,in
 			}
 		System.out.println("\t\t\t"+roundname+ " Successfully Completed!");
 
+}
+
+public static double EstTime(RandomAccessFile inputfn, int rounds)
+{
+	
+	
+		//File input=new File(inputfn);
+		double bytes=0;
+		try {
+			bytes = inputfn.length();
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+		double kb=bytes/1024;
+		
+		kb=kb*1000000;	
+		kb=Math.round(kb);
+		kb=kb/1000000;				//file size in kb with 3 decimal places only
+		double ests=(kb/58.5)*rounds;		//estimated seconds-->ANALYSIS=58.5kb take 1 sec
+		double estm=ests/60;		//estimated minutes
+	
+		estm=estm*1000000;		
+		estm=Math.round(estm);		
+		estm=estm/1000000;			//estminutes with only upto 6 decimal places
+		
+	return estm;
 }
 
 
