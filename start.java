@@ -24,6 +24,7 @@ public class start {
 		    	do {
 		    	System.out.println("Enter Name of the File to be Encrypted(include path if outside):");				
 				filename=chscanner.next();
+				filename=filename.replaceAll("\\\\", "/");		//for windows dir scheme
 				chk=FunctionSet.check(filename);
 				
 				}while(chk!=1);
@@ -31,6 +32,7 @@ public class start {
 				do {
 				System.out.println("Enter Name of Directory to store Encrypted file:");				
 				dirname=chscanner.next();
+				dirname=dirname.replaceAll("\\\\", "/");
 				chk=FunctionSet.check(dirname);
 				}while(chk!=2);
 						
@@ -57,6 +59,7 @@ public class start {
 				{
 				System.out.println("Enter Name of the Encrypted File that is to be Decrypted(include path if outside):");				
 				filename=chscanner.next();
+				filename=filename.replaceAll("\\\\", "/");
 				chk=FunctionSet.check(filename);
 				}while(chk!=1);
 
@@ -68,6 +71,7 @@ public class start {
 				do{
 				System.out.println("Enter Name of Directory where Decrypted file will be Stored:");				
 				dirname=chscanner.next();
+				dirname=dirname.replaceAll("\\\\", "/");
 				chk=FunctionSet.check(dirname);
 				}while(chk!=2);
 				
@@ -92,6 +96,7 @@ public class start {
 		   		do{
 		   		System.out.println("Enter Name of the File to be opened:");		
 		   		filename=chscanner.next();
+		   		filename=filename.replaceAll("\\\\", "/");
 		   		chk=FunctionSet.check(filename);
 		   		}while(chk!=1);
 		    			
@@ -101,6 +106,7 @@ public class start {
 	   		case 4:
 		   		System.out.println("Enter the name of the file you want to delete:");
 		   		String fname=chscanner.next();
+		   		fname=fname.replaceAll("\\\\", "/");
 		   		System.out.println("Do you want to delete the "+fname+" file! \nEnter 1 to Confirm and 2 to Abort:");
 				int opt=0;
 				if(chscanner.hasNextInt())
