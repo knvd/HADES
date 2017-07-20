@@ -14,6 +14,6 @@ As of now(18 Jul 2017), The Project includes 4 classes.
     
     2. EncDec class: This class includes 02 functions ,each for encryption and Decryption.
     
-    3. FunctionSet class: This class includes the essential functions(like xor and shuffle) as well as other short utility functions.There are a total of 09 functions(*XOR function *Shuffle Function *file/DIR check function *Percentage function    *openfile function *deletefile function *shiftkey function *rounds function *EstimateTime function).
+    3. FunctionSet class: This class includes the essential functions(like xor and shuffle) as well as other short utility functions.There are a total of 10 functions(*XOR function *Shuffle Function *file/DIR check function *Percentage function    *openfile function *deletefile function *shiftkey function *rounds function *EstimateTime function *CopyFile function).
     
     4. RsaFunctionClass: This Class Contains 06 Functions for RSA encryption: (* phi function* privatekey Function* modpow function* EncDec function* StringToBytes function* BytesToString function * WriteEncKey function)
