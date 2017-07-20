@@ -15,6 +15,10 @@ public class EncDec {
 		void encrypt(String filename,String dirname,String key)			//encrypt function
 		{
 			try{
+				File dir = new File("TempFiles");
+				if(!dir.exists())
+					dir.mkdir();			//make a folder(if donot exist) for temporary files which will b deleted at end of prg
+
 				RandomAccessFile fn = new RandomAccessFile(filename, "rw");  
 				RandomAccessFile in = new RandomAccessFile("TempFiles/cp-temp.txt", "rw");
 				RandomAccessFile outTemp = new RandomAccessFile("TempFiles/enc-T.txt", "rw");
@@ -46,7 +50,11 @@ public class EncDec {
 		
 		void decrypt(String filename,String extname, String dirname,String key) //decrypt fxn
 		{
-			try{	
+			try{
+				File dir = new File("TempFiles");
+				if(!dir.exists())
+					dir.mkdir();			//make a folder(if donot exist) for temporary files which will b deleted at end of prg
+
 		 		RandomAccessFile fn = new RandomAccessFile(filename, "rw");
 		 		RandomAccessFile in = new RandomAccessFile("TempFiles/cp-temp.txt", "rw");	
 		 		RandomAccessFile out = new RandomAccessFile(dirname+"/dec."+extname, "rw");
@@ -54,7 +62,7 @@ public class EncDec {
 				FunctionSet.shuffle(fn, in);							//deshuffle 
 				FunctionSet.rounds(in, out, key, shiftby,"Decrypting");	//xor
 	
-				File f = new File("cp-temp.txt");
+				File f = new File("TempFiles/cp-temp.txt");
 				f.delete();
 							
 				System.out.println("Do you want to delete "+filename+"?\nEnter 1 for yes and 2 for No:");
