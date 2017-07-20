@@ -23,14 +23,16 @@ public class EncDec {
 				RandomAccessFile in = new RandomAccessFile("TempFiles/cp-temp.txt", "rw");
 				RandomAccessFile outTemp = new RandomAccessFile("TempFiles/enc-T.txt", "rw");
 				RandomAccessFile out = new RandomAccessFile(dirname+"/enc.txt", "rw"); 
-				
-				long count=fn.length();
-				for(long i=0;i<=count-1;i++)		//Copy file to duplicate file	
+			
+				FunctionSet.copyFile(filename, "TempFiles/cp-temp.txt");//Faster FileCopy using File Channels
+
+				/*long count=fn.length();
+				for(long i=0;i<=count-1;i++)		//SLOWER Copyfile (char by char)to duplicate file	
 					{	int ch =fn.read(); 
 						in.write(ch);
 						double percent=FunctionSet.percentage(i, count);
 						System.out.println("Copying Input File: "+percent+"%");
-					}
+					}*/
 
 				FunctionSet.rounds(in, outTemp, key, shiftby,"Encrypting");	//xor
 				FunctionSet.shuffle(outTemp, out);		//shuffle
