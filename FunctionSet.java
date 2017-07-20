@@ -1,4 +1,4 @@
-/* This Class Contains 09 Functions:
+/* This Class Contains 10 Functions:
 	 * XOR function
 	 * Shuffle Function
 	 * file/DIR check function
@@ -8,6 +8,7 @@
 	 * shiftkey function
 	 * rounds function
 	 * EstimateTime function
+	 * FileCopy function
 	 */
 	import java.io.File;
 	import java.io.IOException;
@@ -232,5 +233,22 @@ public static double EstTime(RandomAccessFile inputfn, int rounds)
 }
 
 
+public static void copyFile(String source, String dest) throws IOException 	//using File channel=>faster method than char by char
+{
+	File src=new File(source);
+	File dst=new File(dest);
+    FileChannel sourceCh = null;
+    FileChannel destCh = null;
+    try {
+    	sourceCh = new FileInputStream(src).getChannel();
+    	destCh = new FileOutputStream(dst).getChannel();
+        destCh.transferFrom(sourceCh, 0, sourceCh.size());
+
+        
+       } 
+    finally{
+    	sourceCh.close();destCh.close();
+    }
+    
 
 }
