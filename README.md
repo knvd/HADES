@@ -1,5 +1,8 @@
-# HybridEncryptionAlgorithm
+# HADES (Hybrid Algorithm Encryption System)
+
 A hybrid Encryption/Decryption Algorithm implementing both DES and RSA algorithm.
+
+Name: Hades was the god of the underworld in greek Mythology(https://en.wikipedia.org/wiki/Hades).
 
 RSA is a Secure Encryption algorithm but Using RSA algorithm for data encryption is a time consuming process a it is 10x slower than normal DES.On the other hand DES or any Private key algorithm has the drawback of sharing of secret/key.
 
