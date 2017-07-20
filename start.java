@@ -11,7 +11,7 @@ public class start {
 	public static void main(String[] args) {
 		EncDec obj=new EncDec();
 		Scanner chscanner =new Scanner(System.in);		
-		
+
 		while(flag)
 		{
 		 System.out.println("\n===============================================================\n 1.ENCRYPT a file \t 2.DECRYPT a file \t 3.Open a File\n 4.Delete a File \t 5.Exit Program\n===============================================================");
@@ -35,7 +35,7 @@ public class start {
 				}while(chk!=2);
 						
 				do{
-				System.out.println("Enter Your Private Key (length>10):");
+				System.out.println("Enter Your Private Key (length>10), REMEMBER it for Decryption:");
 				key=chscanner.nextLine();
 				if(key.length()<10)
 					System.out.println("\t\t--Private Key Size should be > 10!--");
@@ -48,7 +48,7 @@ public class start {
 				
 				obj.encrypt(filename,dirname,key);
 					
-				System.out.println("\nFile ENCRYPTED Successfully as 'enc.txt', Stored at"+"'"+dirname+"'");
+				System.out.println("\nFile ENCRYPTED Successfully as 'enc.hades', Stored at"+"'"+dirname+"'");
 				System.out.println("ATTENTION! NOW Your Encrypted Private Key is:"+Enkey+"\n\tIt is Saved for You at '"+keyloc+"'");
 		    	break;		
 		    	
@@ -71,15 +71,16 @@ public class start {
 				chk=FunctionSet.check(dirname);
 				}while(chk!=2);
 				
-				 String regex = "[0-9]+";		//string to make sure key contains only numbers		
+				String regex = "[0-9]+";		//Regular Expression for string to make sure key contains only numbers		
 				do{
 				System.out.println("Enter Your Encrypted Private Key of the file:");
 				key=chscanner.next();
 				if(key.length()<500||!(key.matches(regex)))
-				System.out.println("\t----Encrypted-Key Size must be > 500 and Must only contain Numeric Values!");
-				}while(key.length()<500||!(key.matches(regex)));
-		
-				BigInteger Deckey=RsaFunctionClass.EncDec(key, RsaFunctionClass.d);	
+				System.out.println("\t\t--Encrypted-Key Size must be > 500 and Must only contain Numeric Values!");
+				}while((key.length()<500)||!(key.matches(regex)));
+				
+				
+				BigInteger Deckey=RsaFunctionClass.EncDec(key, RsaFunctionClass.d);	//UNHANDLED>> make regex seq for key in EncDec fxn 
 				//key=RsaFunctionClass.BytesToStr(bkey);	//DEV..F
 				//System.out.println("Decrypted Private key is:"+key);			
 				key=Deckey.toString();
