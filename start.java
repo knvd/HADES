@@ -75,9 +75,9 @@ public class start {
 				do{
 				System.out.println("Enter Your Encrypted Private Key of the file:");
 				key=chscanner.next();
-				if(key.length()<500||!(key.matches(regex))
+				if(key.length()<500||!(key.matches(regex)))
 				System.out.println("\t----Encrypted-Key Size must be > 500 and Must only contain Numeric Values!");
-				}while(key.length()<500||!(key.matches(regex));
+				}while(key.length()<500||!(key.matches(regex)));
 		
 				BigInteger Deckey=RsaFunctionClass.EncDec(key, RsaFunctionClass.d);	
 				//key=RsaFunctionClass.BytesToStr(bkey);	//DEV..F
