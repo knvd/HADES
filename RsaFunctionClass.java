@@ -1,7 +1,6 @@
- /*This Class Contains 06 Functions for RSA encryption::
+ /*This Class Contains 05 Functions for RSA encryption::
 	 * phi function
 	 * privatekey Function
-	 * modpow function
 	 * EncDec function
 	 * StringToBytes function
 	 * BytesToString function
@@ -12,6 +11,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
+import java.util.Date;
 //import java.util.Random;
 
 public class RsaFunctionClass {
@@ -46,16 +46,16 @@ public class RsaFunctionClass {
 	   		}
 
 		
-		 // Compute the private key 'd' from Public key 'e' and phi(n).		NEWWWWW
+		 // Compute the private key 'd' from Public key 'e' and phi		
 	    private static BigInteger privateKey(BigInteger e, BigInteger phi) {
 			
 	    	BigInteger elocal = e;
 	    	BigInteger philocal = phi;
-	    	BigInteger sOld = new BigInteger("1");
-	    	BigInteger tOld = new BigInteger("0");
-	    	BigInteger s = new BigInteger("0");
-	    	BigInteger t = new BigInteger("1");
-	    	BigInteger sNew, tNew, q, r;
+	    	BigInteger xOld = new BigInteger("1");
+	    	BigInteger yOld = new BigInteger("0");
+	    	BigInteger x = new BigInteger("0");
+	    	BigInteger y = new BigInteger("1");
+	    	BigInteger xNew, yNew, q, r;
 	    	BigInteger zero = new BigInteger("0");
 
 	    	// Extended Euclidean algorithm
@@ -63,62 +63,51 @@ public class RsaFunctionClass {
 	    	{
 	    		q = elocal.divide(philocal);		//quotient=e/phi
 	    		r = elocal.mod(philocal);			//remainder=e%phi
-	    		sNew = sOld.subtract(q.multiply(s));	// 	1-(quotient*0)
-	    		tNew = tOld.subtract(q.multiply(t));	// 0-(quotient*1)
-	    		elocal = philocal;				//e=phi
-	    		philocal = r;					//phi=remainder
-	    		sOld = s;						//0
-	    		tOld = t;						//1
-	    		s = sNew;
-	    		t = tNew;
+	    		xNew = xOld.subtract(q.multiply(x));	
+	    		yNew = yOld.subtract(q.multiply(y));	
+	    		elocal = philocal;				
+	    		philocal = r;					
+	    		xOld = x;						
+	    		yOld = y;						
+	    		x = xNew;
+	    		y = yNew;
 	    	}
 	    	
 	    	// We want d to be positive
-	    	// if sOld is less than zero we add it to s
-	    	// else, we just return it
-	    	if(sOld.compareTo(zero) == -1) {
-	    		return sOld.add(s);
+	    	// if xOld is less than zero we add it to x else, we just return it
+	    	if(xOld.compareTo(zero) == -1) {
+	    		return xOld.add(x);
 	    	}
-	    	return sOld;
+	    	return xOld;
 	    	
 	        }
 	    
 	 
-	 	// Do modular exponentiation for the expression b^e mod m
-	 	// (b to the power e, modulo m).
-	 	static private BigInteger modpow(BigInteger b, BigInteger e, BigInteger m) {
-	 		// prints the calculations
-	 		// System.out.println(b + " " + e + " " + m);
+	 	// Do modular exponentiation for the expression c_m^e_dmodn=c_m -->for encryption use m, e And for dec use c,d 
+	    // Can be used for encryption (with public key e) or decryption (with private key d).m stands for plain text and c for cipher text
+	
+	 	static public BigInteger EncDec(BigInteger m_c, BigInteger e_d, BigInteger n) 
+	 	{
 	 		BigInteger zero = new BigInteger("0");
 	 		BigInteger one = new BigInteger("1");
 	 		BigInteger two = one.add(one);
 
 	 		// Base Case
-	 		if (e.equals(zero))
-	 			return one;
-	 		if (e.equals(one))
-	 			return b.mod(m);
+	 		if (e_d.equals(zero))
+	 			return one;				//m^e mod n-->e=0
+	 		if (e_d.equals(one))
+	 			return m_c.mod(n);		//m^e mod n-->e=1
 
-	 		if (e.mod(two).equals(zero)) {
+	 		if (e_d.mod(two).equals(zero)) {
 	 			// Calculates the square root of the answer
-	 			BigInteger answer = modpow(b, e.divide(two), m);
+	 			BigInteger answer = EncDec(m_c, e_d.divide(two), n);
 	 			// Reuses the result of the square root
-	 			return (answer.multiply(answer)).mod(m);
+	 			return (answer.multiply(answer)).mod(n);
 	 		}	
 
-	 		return (b.multiply(modpow(b,e.subtract(one),m))).mod(m);
+	 		return (m_c.multiply(EncDec(m_c,e_d.subtract(one),n))).mod(n);
 	 	}
 	 	
-	 
-	    
-	    
-	    // Can be used for encryption (with public key e) or decryption (with private key).
-	 	static public BigInteger EncDec(String key, BigInteger e_d) 
-	 	{
-	 			
-	 		BigInteger cmessage=new BigInteger(key);
-	 		return modpow(cmessage, e_d, n);
-	 	}
 
 	public static String StrToBytes(String key)
 	 	{
@@ -146,7 +135,7 @@ public class RsaFunctionClass {
 		String name="Key-"+filename.substring(0,filename.lastIndexOf("."))+".txt";
 		String returnname="";
 		
-		
+		Date dt=new Date();
 		try 
 		{
 			File ptr=new File(dirname+"/"+name);
@@ -154,7 +143,7 @@ public class RsaFunctionClass {
 			{
 				RandomAccessFile out=new RandomAccessFile(dirname+"/"+"Key-"+filename.substring(0,filename.lastIndexOf("."))+"Copy"+".txt","rw");
 				out.seek(0);
-				out.writeBytes("Encrypted Key for File : "+filename+"\n"+Enkey);	
+				out.writeBytes("Encrypted Key for File : "+filename+" Generated on:"+dt+"\n"+Enkey);	
 				out.close();
 				returnname=dirname+"/"+"Key-"+filename.substring(0,filename.lastIndexOf("."))+"Copy"+".txt";
 			}
@@ -162,7 +151,7 @@ public class RsaFunctionClass {
 			{
 				RandomAccessFile out=new RandomAccessFile(dirname+"/"+name,"rw");
 				out.seek(0);
-				out.writeBytes("Encrypted Key for File : "+filename+"\n"+Enkey);	
+				out.writeBytes("Encrypted Key for File : "+filename+" Generated on:"+dt+"\n"+Enkey);	
 				out.close();
 				returnname=dirname+"/"+name;
 			}
@@ -173,5 +162,7 @@ public class RsaFunctionClass {
 		}
 	return returnname;
 	}
+	
 
+	
 }
