@@ -24,9 +24,8 @@ public class start {
 		    	do {
 		    	System.out.println("Enter Name of the File to be Encrypted(include path if outside):");				
 				filename=chscanner.next();
-				filename=filename.replaceAll("\\\\", "/");		//for windows dir scheme
+				filename=filename.replaceAll("\\\\", "/");		//for windows dir scheme				
 				chk=FunctionSet.check(filename);
-				
 				}while(chk!=1);
 					
 				do {
@@ -45,7 +44,8 @@ public class start {
 				
 				//bkey=key.getBytes(Charset.defaultCharset());  //array of bytes of key
 				key=RsaFunctionClass.StrToBytes(key);	//get the string of bytes
-				BigInteger Enkey=RsaFunctionClass.EncDec(key, RsaFunctionClass.e);	//RSA-Encrypt the key
+				BigInteger m=new BigInteger(key);	//convert to BI
+				BigInteger Enkey=RsaFunctionClass.EncDec(m, RsaFunctionClass.e,RsaFunctionClass.n);	//RSA-Encrypt the key
 				String keyloc=RsaFunctionClass.WriteEncKey(Enkey, dirname, filename);	//write encrypted key to file for further use
 				
 				obj.encrypt(filename,dirname,key);
@@ -83,8 +83,8 @@ public class start {
 				System.out.println("\t\t--Encrypted-Key Size must be > 500 and Must only contain Numeric Values!");
 				}while((key.length()<500)||!(key.matches(regex)));
 				
-				
-				BigInteger Deckey=RsaFunctionClass.EncDec(key, RsaFunctionClass.d);	//UNHANDLED>> make regex seq for key in EncDec fxn 
+				BigInteger c=new BigInteger(key);	//convert to BI
+				BigInteger Deckey=RsaFunctionClass.EncDec(c, RsaFunctionClass.d,RsaFunctionClass.n);	//UNHANDLED>> make regex seq for key in EncDec fxn 
 				//key=RsaFunctionClass.BytesToStr(bkey);	//DEV..F
 				//System.out.println("Decrypted Private key is:"+key);			
 				key=Deckey.toString();
