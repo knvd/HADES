@@ -1,4 +1,4 @@
-/* This Class Contains 10 Functions:
+/* This Class Contains 11 Functions:
 	 * XOR function
 	 * Shuffle Function
 	 * file/DIR check function
@@ -8,11 +8,17 @@
 	 * shiftkey function
 	 * rounds function
 	 * EstimateTime function
-	 * FileCopy function
+	 * CopyFile function
+	 * KeyGen functions
 	 */
-	import java.io.File;
-	import java.io.IOException;
-	import java.io.RandomAccessFile;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.util.Random;
 import java.util.Scanner;
 
 public class FunctionSet {
@@ -153,7 +159,8 @@ public static void rounds(RandomAccessFile in,RandomAccessFile out,String key,in
 	int round=0,ch=0;
 	String roundname="";
 	System.out.println("=========================================================================");
-	System.out.println("Enter Mode:\n1.FAST(2 Round Enc/Dec)\t\t--Estimated Time Required: "+EstTime(in,2)+" seconds ("+(EstTime(in,2))/60+" minutes)\n2.FASTER(4-R E/D)\t\t--Estimated Time Required: "+EstTime(in,4)+" seconds ("+(EstTime(in,4))/60+" minutes)\n3.STANDARD(8-R E/D)\t\t--Estimated Time Required: "+EstTime(in,8)+" seconds ("+(EstTime(in,8))/60+" minutes)\n4.STANDARD-Plus(12-R E/D)\t--Estimated Time Required: "+EstTime(in,12)+" seconds ("+(EstTime(in,12))/60+" minutes)\n5.EXPRESS(16-R E/D)\t\t--Estimated Time Required: "+EstTime(in,16)+" seconds ("+(EstTime(in,16))/60+" minutes)\n\t\tUse Same Mode for Decryption with which the File was ENcrypted!");	System.out.println("=========================================================================");
+	System.out.println("Enter Mode:\n1.FAST(2 Round Enc/Dec)\t\t--Estimated Time :: "+EstTime(in,2)+" seconds ("+(EstTime(in,2))/60+" minutes)\n2.FASTER(4-R E/D)\t\t--Estimated Time :: "+EstTime(in,4)+" seconds ("+(EstTime(in,4))/60+" minutes)\n3.STANDARD(8-R E/D)\t\t--Estimated Time :: "+EstTime(in,8)+" seconds ("+(EstTime(in,8))/60+" minutes)\n4.STANDARD-Plus(12-R E/D)\t--Estimated Time :: "+EstTime(in,12)+" seconds ("+(EstTime(in,12))/60+" minutes)\n5.EXPRESS(16-R E/D)\t\t--Estimated Time :: "+EstTime(in,16)+" seconds ("+(EstTime(in,16))/60+" minutes)\n\t\tUse Same Mode for Decryption with which the File was ENcrypted!");
+	System.out.println("=========================================================================");
 	if(obj.inscan.hasNextInt())
 		ch=obj.inscan.nextInt();
 	
@@ -232,8 +239,7 @@ public static double EstTime(RandomAccessFile inputfn, int rounds)
 	return ests;
 }
 
-
-public static void copyFile(String source, String dest) throws IOException 	//using File channel=>faster method than char by char
+public static void copyFile(String source, String dest) throws IOException 			//using File channel=>faster method
 {
 	File src=new File(source);
 	File dst=new File(dest);
@@ -248,7 +254,55 @@ public static void copyFile(String source, String dest) throws IOException 	//us
        } 
     finally{
     	sourceCh.close();destCh.close();
-    }
-    
+    }    
+}
+
+public static String KeyGen(String key)	//make a 200 byte key from user key
+{
+	int len=key.length(),i=0,n=1;
+	
+		
+	do{		
+		int x= key.charAt(i)+n;			//more randomness by 'n'
+		key+=x;
+		n++;i++;
+		
+		if(i==len-1)
+			i=0;
+	}while(key.length()<len+100);
+	key=key.substring(len, key.length());
+	
+	int [] kArray=new int[key.length()];
+	for(int m =0;m<=key.length()-1;m++)
+	{
+		kArray[m]=key.charAt(m);
+		System.out.println("Generating 200 byte key from Entered key: "+FunctionSet.percentage(m, key.length()-1)+"%");
+	}
+
+	int kArrLen=kArray.length;
+	int per=0;
+	for (int j = kArrLen - 1; j >= 1; j--)		//FISHER-YATES Random Shuffle
+	{
+		Random rand = new Random();
+		// generate a random number k such that 0 <= k <= j
+		int k = rand.nextInt(j + 1);
+
+		// swap current element with randomly generated index
+		int temp = kArray[j];
+		kArray[j] = kArray[k];
+		kArray[k] = temp;
+		System.out.println("Applying Random Key Shuffle: "+FunctionSet.percentage(per, kArrLen - 1)+"%");
+		per++;
+	}
+	
+	key="";
+	for(int m =0;m<=kArrLen-1;m++)
+	{
+		key+=kArray[m];
+	}
+System.out.println(key.length()+" Byte Key Generated Successfully!");
+	return key;
+}
+
 
 }
