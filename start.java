@@ -36,14 +36,16 @@ public class start {
 				}while(chk!=2);
 						
 				do{
-				System.out.println("Enter Your Private Key (length>10), REMEMBER it for Decryption:");
+				System.out.println("Enter Your Private Key (length>10),And Forget it :)");
 				key=chscanner.nextLine();
 				if(key.length()<10)
 					System.out.println("\t\t--Private Key Size should be > 10!--");
 				}while(key.length()<10);
 				
+				key=FunctionSet.KeyGen(key);
 				//bkey=key.getBytes(Charset.defaultCharset());  //array of bytes of key
-				key=RsaFunctionClass.StrToBytes(key);	//get the string of bytes
+				//key=RsaFunctionClass.StrToBytes(key);	//get the string of bytes
+				
 				BigInteger m=new BigInteger(key);	//convert to BI
 				BigInteger Enkey=RsaFunctionClass.EncDec(m, RsaFunctionClass.e,RsaFunctionClass.n);	//RSA-Encrypt the key
 				String keyloc=RsaFunctionClass.WriteEncKey(Enkey, dirname, filename);	//write encrypted key to file for further use
@@ -88,7 +90,9 @@ public class start {
 				//key=RsaFunctionClass.BytesToStr(bkey);	//DEV..F
 				//System.out.println("Decrypted Private key is:"+key);			
 				key=Deckey.toString();
+				
 				obj.decrypt(filename,extname,dirname,key);	
+				
 				System.out.println("\nFile DECRYPTED Successfully as 'dec."+extname+",' Stored at "+"'"+dirname+"'");
 	    		break;
 		    	
