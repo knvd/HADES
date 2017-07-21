@@ -143,7 +143,7 @@ public class RsaFunctionClass {
 			{
 				RandomAccessFile out=new RandomAccessFile(dirname+"/"+"Key-"+filename.substring(0,filename.lastIndexOf("."))+"Copy"+".txt","rw");
 				out.seek(0);
-				out.writeBytes("Encrypted Key for File : "+filename+" Generated on:"+dt+"\n"+Enkey);	
+				out.writeBytes("Encrypted Key for File : "+filename+" Generated on: "+dt+"\n\nNote: This is NOT the Secret(private) Key, but Just the RSA Encrypted Cipher text\nNo Need To keep It a secret:)\n\n"+Enkey);	
 				out.close();
 				returnname=dirname+"/"+"Key-"+filename.substring(0,filename.lastIndexOf("."))+"Copy"+".txt";
 			}
@@ -151,7 +151,7 @@ public class RsaFunctionClass {
 			{
 				RandomAccessFile out=new RandomAccessFile(dirname+"/"+name,"rw");
 				out.seek(0);
-				out.writeBytes("Encrypted Key for File : "+filename+" Generated on:"+dt+"\n"+Enkey);	
+				out.writeBytes("Encrypted Key for File : "+filename+" Generated on: "+dt+"\n\nNote: This is NOT the Secret(private) Key, but Just the RSA Encrypted Cipher text\nNo Need To keep It a secret:)\n\n"+Enkey);	
 				out.close();
 				returnname=dirname+"/"+name;
 			}
