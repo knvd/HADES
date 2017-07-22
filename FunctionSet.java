@@ -9,7 +9,7 @@
 	 * rounds function
 	 * EstimateTime function
 	 * CopyFile function
-	 * KeyGen functions
+	 * KeyGen function
 	 */
 import java.io.File;
 import java.io.FileInputStream;
@@ -280,7 +280,6 @@ public static String KeyGen(String key)	//make a 200 byte key from user key
 	}
 
 	int kArrLen=kArray.length;
-	int per=0;
 	for (int j = kArrLen - 1; j >= 1; j--)		//FISHER-YATES Random Shuffle
 	{
 		Random rand = new Random();
@@ -291,8 +290,6 @@ public static String KeyGen(String key)	//make a 200 byte key from user key
 		int temp = kArray[j];
 		kArray[j] = kArray[k];
 		kArray[k] = temp;
-		System.out.println("Applying Random Key Shuffle: "+FunctionSet.percentage(per, kArrLen - 1)+"%");
-		per++;
 	}
 	
 	key="";
