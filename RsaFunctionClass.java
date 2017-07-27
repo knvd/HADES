@@ -131,9 +131,13 @@ public class RsaFunctionClass {
 
 	public static String WriteEncKey(BigInteger Enkey,String dirname,String filename)
 	{
+		String returnname="",name="";
 		filename=filename.substring(filename.lastIndexOf("/")+1);	
-		String name="Key-"+filename.substring(0,filename.lastIndexOf("."))+".txt";
-		String returnname="";
+		if (filename.contains("."))
+			name="Key-"+filename.substring(0,filename.lastIndexOf("."))+".txt";
+		else
+			name="Key-"+filename+".txt";
+		
 		
 		Date dt=new Date();
 		try 
