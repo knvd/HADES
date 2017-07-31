@@ -1,0 +1,11 @@
+Database Details Used:
+>>db_admin=root
+>>db_password=toor
+
+CREATE DATABASE HADES;
+USE HADES;
+
+Table specification:
+
+CREATE TABLE members (id int(10) unsigned NOT NULL PRIMARY KEY auto_increment, first_name varchar(45) NOT NULL, email varchar(45) NOT NULL, uname varchar(45) NOT NULL,pass varchar(45) NOT NULL,regdate DATE  NOT NULL,e varchar(2500) NOT NULL DEFAULT 0,d varchar(2500) NOT NULL DEFAULT 0,n varchar(2500) NOT NULL DEFAULT 0);
+
