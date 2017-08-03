@@ -67,8 +67,8 @@ function insertText(txt)
 </script>
 
 <div id="encdetail" style="width: 50%; padding-right: 20em; padding-left: 20em;">
-<img src = "images/JavaSparrow.jpg"
-         alt = "File Upload Sucess" height = "200" width = "300" />
+<br /><br /><img src = "images/JavaSparrow.jpg"
+         alt = "File Upload Sucess" height = "150" width = "170" />
 
 <p> <h2> File Uploaded Successfully! </h2><br /></p>
 <form action="encprocess.jsp" method="post">
