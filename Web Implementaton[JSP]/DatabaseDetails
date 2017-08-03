@@ -5,7 +5,9 @@ Database Details Used:
 CREATE DATABASE HADES;
 USE HADES;
 
-Table specification:
+TABLE WILL BE AUTO GENERATED ON SIGN-UP
+
+(OR CREATE MANUALLY AS)Table specification:
 
 CREATE TABLE members (id int(10) unsigned NOT NULL PRIMARY KEY auto_increment, first_name varchar(45) NOT NULL, email varchar(45) NOT NULL, uname varchar(45) NOT NULL,pass varchar(45) NOT NULL,regdate DATE  NOT NULL,e varchar(2500) NOT NULL DEFAULT 0,d varchar(2500) NOT NULL DEFAULT 0,n varchar(2500) NOT NULL DEFAULT 0);
 
