@@ -127,11 +127,11 @@ public class RsaFunctionClass {
 			File ptr=new File(dirname+"/"+name);
 			if(ptr.exists())
 			{
-				RandomAccessFile out=new RandomAccessFile(dirname+"/"+"CipherKey-"+filename.substring(0,filename.lastIndexOf("."))+"Copy"+".txt","rw");
+				RandomAccessFile out=new RandomAccessFile(dirname+"/"+"Copy-"+name,"rw");
 				out.seek(0);
 				out.writeBytes("Encrypted Key for File : "+filename+" Generated on: "+dt+"\n\nMode Used:'"+rounds+"'\\n\nNote: This is NOT the Secret(private) Key, but Just the RSA Encrypted Cipher text, No Need To keep It a secret:)\n\nEncrypted Key:\n"+Enkey+"\n\nEncrypted for the user '"+unm+"' using the following Public Key:\n"+e);	
 				out.close();
-				returnname=dirname+"/"+"CipherKey-"+filename.substring(0,filename.lastIndexOf("."))+"Copy"+".txt";
+				returnname=dirname+"/"+"Copy-"+name;
 			}
 			else
 			{

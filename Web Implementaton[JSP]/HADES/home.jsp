@@ -1,15 +1,13 @@
 
-<jsp:include page="header.jsp" />
 <%
     if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
 %>
-<div class="fullbody">
-<br /><h2>Nothing to Show! You are not Logged in to our Systems! <b><a href="index.jsp">Please Login</a></b> </h2><br /><br />
-</div>
+<jsp:include page="loginpage.jsp" />
 <%} 
 else 
 {
 %>
+<jsp:include page="header.jsp" />
 <html>
 <head>
 <title>[ENC/DEC] - HADES</title>
@@ -66,7 +64,7 @@ else
 </ol>
 <br /><br /><br /><br />
 <form action="decUpld.jsp" method="get">
-<input type="submit" value ="Decrypt a File Now" name="btn2" />
+<input type="submit" value ="Decrypt a File Now" name="btn2"  />
 </form>
 
 <br /><br />
@@ -74,10 +72,10 @@ else
 </div>
 
 </html>
-
+<jsp:include page="footer.jsp" />
 
 <% }
 %>
 
-<jsp:include page="footer.jsp" />
+
 

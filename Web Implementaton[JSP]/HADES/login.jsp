@@ -1,7 +1,15 @@
 <%@ page import ="java.sql.*" %>
+<%@ page import ="java.io.*" %>
 <%@ page import="hadesED.*"%>
 
 <%
+
+    if ((request.getParameter("uname") == null) || (request.getParameter("uname") == "") || request.getParameter("pass") == null) 
+	{
+		response.sendRedirect("index.jsp");
+	}
+	else 
+	{
 	String userid = request.getParameter("uname");    
 	String pwd = request.getParameter("pass");
 
@@ -13,24 +21,32 @@
 	if (rs.next()) {
 		session.setAttribute("userid", userid);
 		//out.println("welcome " + userid);
-		response.sendRedirect("home.jsp");
-	} else {%>
-<jsp:include page="header.jsp" />        
-
-<div class="fullbody">
+//make user folder if not exists
+	String strProjectDir = request.getRealPath("/users/");
+	File ProjectDir = new File(strProjectDir); 
+	if(!ProjectDir.exists()) 
+		ProjectDir.mkdir(); 
+	File usrdir = new File(strProjectDir+"/"+userid);
+	if(!usrdir.exists()) 
+		usrdir.mkdir(); 
+	
+	response.sendRedirect("home.jsp");
+	}
+	 else {%>
 <html>
 <head>
 <title>Login failed!</title>
 <link rel='stylesheet' type='text/css' href='stylesheet.css'/>
 </head>
-<h2>No Such User Exists! Invalid username/password <a href='index.jsp'>Try Again</a></h2>
-
+<script language="javascript">
+	alert("No User named <%=userid%> Exists! Invalid username/password !");
+	</script>
+<jsp:include page="loginpage.jsp" />
 </html>
 
-</div>
-<jsp:include page="footer.jsp" />
 
 <%    
 }
+}	//close else of ist if
 %>
 

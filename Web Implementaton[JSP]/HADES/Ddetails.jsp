@@ -29,24 +29,22 @@ alert("No file Selected!");
 
 </script>
 <% 	out.println("<p><b><h2>No file Selected! Page will auto refresh</h2></b><p>");
-	response.setHeader("Refresh", "1.5;url=encUpld.jsp");
+	response.setHeader("Refresh", "1.5;url=decUpld.jsp");
 }
 else{
 %>
 
 
-<jsp:include page="header.jsp" />
+
 <%
     if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
 %>
-<div class="fullbody">
-<br /><h2>Nothing to Show! You are not Logged in to our Systems! <b><a href="index.jsp">Please Login</a></b> </h2><br /><br />
-</div>
+<jsp:include page="loginpage.jsp" />
 <%} 
 else 
 {
 %>
-
+<jsp:include page="header.jsp" />
 <div class="fullbody">
 <html>
 <head>
@@ -55,7 +53,7 @@ else
 <link rel='stylesheet' type='text/css' href='stylesheet.css'/>
 </head>
 
-<div id="encdetail" style="width: 50%; padding-right: 20em; padding-left: 20em;">
+<div id="decdetail" style="width: 50%; padding-right: 20em; padding-left: 20em;">
 <img src = "images/JavaSparrow.jpg"
          alt = "File Upload Sucess" height = "200" width = "300" align="middle" />
 <p> <h2> File Uploaded Successfully! </h2></p>
@@ -78,9 +76,10 @@ else
 </html>
 
 </div>
+<jsp:include page="footer.jsp" />
 <%
 }%>
-<jsp:include page="footer.jsp" />
+
 
 <%
 

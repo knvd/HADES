@@ -1,6 +1,6 @@
 
 <%
-    if ((session.getAttribute("Efname") == null) || (session.getAttribute("fname") == "")) {
+    if ((session.getAttribute("Efname") == null) || (session.getAttribute("Efname") == "")) {
 	%>
 <script language="javascript">
 

@@ -9,6 +9,7 @@
 <%
     
   String filename = (String)session.getAttribute("fname");	//"cvr.jpg";   FILE NAME WITH EXTENSION//
+ 
   String filepath =(String)session.getAttribute("dirname");	// "/home/knvd/Documents/";   
 	//filepath=request.getRealPath(filepath);        // ABSOLUTE FILE PATH //  
 

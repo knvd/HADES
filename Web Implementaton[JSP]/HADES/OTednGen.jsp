@@ -1,15 +1,17 @@
 <%@ page import="hadesED.*" %>
-<jsp:include page="header.jsp" />
+
 <%
     if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
 %>
-<div class="fullbody">
-<br /><h2>Nothing to Show! You are not Logged in to our Systems! <b><a href="index.jsp">Please Login</a></b> </h2><br /><br />
-</div>
+<script language="javascript">
+	alert("You are not Logged in!");
+	</script>
+<jsp:include page="loginpage.jsp" />
 <%} 
 else 
 {
 %>
+<jsp:include page="header.jsp" />
 <div class="fullbody">
 <html>
 <head>
@@ -30,7 +32,8 @@ Done Generation!<input type="submit" value="Done Lets Go">
 
 </html>
 </div>
+<jsp:include page="footer.jsp" />
 <% }
 %>
 
-<jsp:include page="footer.jsp" />
+

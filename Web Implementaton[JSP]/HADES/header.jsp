@@ -27,19 +27,23 @@ String username=(String)session.getAttribute("userid");
 database dobj=new database();
 ResultSet rs;
 String publickey="";
+if (!dobj.connect("localhost","HADES","root","toor"))
+			out.println("Database Connection Refused!");
 try
 {
-	if (!dobj.connect("localhost","HADES","root","toor"))
-			out.println("Database Connection Refused!");
+	//if table does not exist
+dobj.insert("CREATE TABLE IF NOT EXISTS members (id int(10) unsigned NOT NULL PRIMARY KEY auto_increment, first_name varchar(45) NOT NULL, email varchar(45) NOT NULL, uname varchar(45) NOT NULL,pass varchar(45) NOT NULL,regdate DATE  NOT NULL,e varchar(2500) NOT NULL DEFAULT 0,d varchar(2500) NOT NULL DEFAULT 0,n varchar(2500) NOT NULL DEFAULT 0);");	
+
 rs=dobj.select("select e from members where uname='"+username+"';");
 while(rs.next())
 	{
 	publickey=rs.getString("e");
 	}
 }
-catch(SQLException e)
+catch(SQLException e1)
 {
-out.println(e);
+out.println(e1);
+
 }
 session.setAttribute("pkey",publickey);
  %>
@@ -122,17 +126,19 @@ else
 <li><a href="index.jsp">Home</a></li>
  <li><a href="#contact">Contact</a></li>
   <li><a href="#about">About</a></li>
-  <li style="float: right;"><a href="index.jsp">Login</a></li>
-<li style="float: right;"><a href="index.jsp">Register</a></li>
+  <li style="float: right;"><a href="loginpage.jsp">Login</a></li>
+<li style="float: right;"><a href="reg.jsp">Register</a></li>
 
 <%}
 else
 {%>
-  <li><a href="home.jsp">Home</a></li>
+  <li><a href="index.jsp">Home</a></li>
+<li><a href="showPubKeys.jsp">Browse Public Keys</a></li>
   <li><a href="encUpld.jsp">Encrypt File</a></li>
   <li><a href="decUpld.jsp">Decrypt File</a></li>
  <li><a href="#contact">Contact</a></li>
   <li><a href="#about">About</a></li>
+<li style="float: right;"><a href="myprofile.jsp">My Profile</a></li>
  <li style="float: right;"><a href="logout.jsp">Log Out</a></li>
 <%}
 %>

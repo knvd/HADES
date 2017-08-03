@@ -35,17 +35,16 @@ alert("No file Selected!");
 else{
 %>
 
-<jsp:include page="header.jsp" />
+
 <%
     if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
 %>
-<div class="fullbody">
-<br /><h2>Nothing to Show! You are not Logged in to our Systems! <b><a href="index.jsp">Please Login</a></b> </h2><br /><br />
-</div>
+<jsp:include page="loginpage.jsp" />
 <%} 
 else 
 {
 %>
+<jsp:include page="header.jsp" />
 <div class="fullbody">
 <html>
 <head>
@@ -73,7 +72,7 @@ function insertText(txt)
 
 <p> <h2> File Uploaded Successfully! </h2><br /></p>
 <form action="encprocess.jsp" method="post">
-<input name="pkey" type="text" title="Enter and Forget. You won't need it later!" placeholder="One Time Private Key" minlength="10" required /><br />
+<input name="pkey" type="text" title="Enter and Forget. You won't need it later!" placeholder="One Time Private Key" minlength="16" required /><br />
 <marquee>Use your OWN PUBLIC KEY if You want to ENCRYPT it for YOURSELF</marquee> 
 <input name="pubkey" type="text" id="pubk" title="Valid Public key consists of Numbers Only" minlength="100" placeholder="Enter Public key of Intended User(Only He/She can Decrypt the file)" required />
 <br /><input type="button" value="Use My Own Public Key" title="Only You can Decrypt This file!" onclick="insertText()" /><br /><br />
@@ -90,11 +89,11 @@ function insertText(txt)
 
 </html>
 </div>
-
+<jsp:include page="footer.jsp" />
 <%
 }//close(else) --not logged in selected
 %>
-<jsp:include page="footer.jsp" />
+
 	
 <%
 

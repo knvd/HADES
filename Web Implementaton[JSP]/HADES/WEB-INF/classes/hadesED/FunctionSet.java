@@ -84,7 +84,6 @@ public static String shiftKey(String key,int shiftby)		//left shift by factor "s
 
 public static void rounds(RandomAccessFile in,RandomAccessFile out,String key,int shiftby,int round)		//round Encryption/decryption
 {
-	String roundname="";
 	
 	if(key.length()%2!=0)
 			round--;
@@ -94,49 +93,22 @@ public static void rounds(RandomAccessFile in,RandomAccessFile out,String key,in
 			
 				if(i%2!=0)
 				{
-					System.out.println("\t\t\tROUND--"+i);
+					//System.out.println("\t\t\tROUND--"+i);
 					key=FunctionSet.shiftKey(key,shiftby);
 					FunctionSet.xor(in, out, key);		
 				}
 				else
 				{
-					System.out.println("\t\t\tROUND--"+i);
+					//System.out.println("\t\t\tROUND--"+i);
 					key=FunctionSet.shiftKey(key,shiftby);
 					FunctionSet.xor(out, in, key);
 				}	
 			}
-		System.out.println("\t\t\t"+roundname+ " Successfully Completed!");
+		
 
 }
 
-public static double EstTime(RandomAccessFile inputfn, int rounds)
-{
-	
-	
-		//File input=new File(inputfn);
-		double bytes=0;
-		try {
-			bytes = inputfn.length();
-		} catch (IOException e) {
-			System.out.println(e);
-		}
-		double kb=bytes/1024;
-		
-		kb=kb*100000;	
-		kb=Math.round(kb);
-		kb=kb/100000;				//file size in kb with 5 decimal places only
-		double ests=(kb/58.5)*rounds;		//estimated seconds-->ANALYSIS=58.5kb take 1 sec
-		ests=ests*100000;		
-		ests=Math.round(ests);		
-		ests=ests/100000;
-		
-		/*		double estm=ests/60;		//estimated minutes
-		estm=estm*10000;		
-		estm=Math.round(estm);		
-		estm=estm/10000;			//estminutes with only upto 5 decimal places
-	*/	
-	return ests;
-}
+
 
 public static void copyFile(String source, String dest) throws IOException 			//using File channel=>faster method
 {

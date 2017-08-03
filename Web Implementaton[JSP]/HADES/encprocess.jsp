@@ -7,24 +7,15 @@
 if ((request.getParameter("pkey") == null) || (request.getParameter("pkey") == "")) 
 { %>
 	<script language="javascript">
-
 	alert("Session Expired!");
-
 	</script>
 	<% 	out.println("<p><b><h2>Your Session Expired! Page will auto refresh</h2></b><p>");
-		response.setHeader("Refresh", "1;url=Edetails.jsp");
+		response.setHeader("Refresh", "1;url=encUpld.jsp");
 	}
 	else{
-	%>
-
-
-	<jsp:include page="header.jsp" />
-	<%
-	if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) 
-	{ %>
-		<div class="fullbody">
-		<br /><h2>Nothing to Show! You are not Logged in to our Systems! <b><a href="index.jsp">Please Login</a></b> </h2><br /><br />
-		</div>
+		if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) 
+		{ %>
+			<jsp:include page="loginpage.jsp" />
 		<%} 
 		else 
 		{
@@ -32,6 +23,8 @@ if ((request.getParameter("pkey") == null) || (request.getParameter("pkey") == "
 
 		<%
 		String filename=(String) session.getAttribute("fname");
+		String orginalName=filename;
+		//filename=filename.replaceAll(" ", "-");		//remove spaces if any
 		String dname=(String) session.getAttribute("dirname");
 		session.setAttribute("Edirname",dname);
 		String key = request.getParameter("pkey");
@@ -67,7 +60,7 @@ if ((request.getParameter("pkey") == null) || (request.getParameter("pkey") == "
 				EncDec obj=new EncDec();				
 				obj.encrypt(filename,dname,key,rounds);
 
-				File delorg =new File(dname+"/"+filename);		//delete uploaded
+				File delorg =new File(dname+"/"+orginalName);		//delete uploaded
 				delorg.delete();
 	
 
@@ -75,6 +68,7 @@ if ((request.getParameter("pkey") == null) || (request.getParameter("pkey") == "
 					filename=filename.substring(0,filename.lastIndexOf("."));
 								    
 			%>
+			<jsp:include page="header.jsp" />
 			<div class="fullbody">
 			<html>
 			<head>
@@ -109,8 +103,15 @@ if ((request.getParameter("pkey") == null) || (request.getParameter("pkey") == "
 
 			</form>
 
+			<form action="home.jsp" method="post">
+			<input type="submit" name="Dbutton" value="Back to Home">			
+			</form>
+
+
+
 			</html>
 			</div>
+			<jsp:include page="footer.jsp" />
 		<% }		//close if(pub key)
 
 		else
@@ -130,10 +131,7 @@ if ((request.getParameter("pkey") == null) || (request.getParameter("pkey") == "
 			}
 
 	}	//close(else) user not logged in
-	%>
-	<jsp:include page="footer.jsp" />
-
-<%
+	
 
 }	//close(else) --session expiry
 %>

@@ -12,8 +12,10 @@ public class EncDec {
 		double percent;
 	
 		public void encrypt(String filename,String dirname,String key,int rounds)			//encrypt function
-		{String fname="";
+		{
+			
 			try{
+				String fname=filename;
 				if (filename.contains("."))
 					fname =filename.substring(0,filename.lastIndexOf("."));
 				
@@ -48,8 +50,9 @@ public class EncDec {
 		
 		public void decrypt(String filename,String extname, String dirname,String key,int rounds) //decrypt fxn
 		{
+			
 			try{
-				String fname="";
+				String fname=filename;
 				if (filename.contains("."))
 					fname =filename.substring(0,filename.lastIndexOf("."));
 				extname=extname.substring(extname.lastIndexOf(".") + 1);
@@ -58,14 +61,21 @@ public class EncDec {
 					dir.mkdir();			//make a folder(if donot exist) for temporary files which will b deleted at end of prg
 
 		 		RandomAccessFile fn = new RandomAccessFile(dirname+"/"+filename, "rw");
-		 		RandomAccessFile in = new RandomAccessFile(dirname+"/"+"TempFiles/cp-temp.hades", "rw");	
+		 		RandomAccessFile in = new RandomAccessFile(dirname+"/"+"TempFiles/cp-temp.hades", "rw");
+				RandomAccessFile outTemp = new RandomAccessFile(dirname+"/"+"TempFiles/dec-T.hades", "rw");	
 		 		RandomAccessFile out = new RandomAccessFile(dirname+"/"+fname+"."+extname, "rw");
+				
+				FunctionSet.copyFile(dirname+"/"+filename, dirname+"/"+"TempFiles/cp-temp.hades");//Faster FileCopy using File Channels
+
 		    	
-				FunctionSet.shuffle(fn, in);							//deshuffle 
-				FunctionSet.rounds(in, out, key, shiftby,rounds);	//xor
+				FunctionSet.shuffle(in, outTemp);							//deshuffle 
+
+				FunctionSet.rounds(outTemp, out, key, shiftby,rounds);	//xor
 	
-				File f = new File("TempFiles/cp-temp.hades");
-				f.delete();
+				File f1 = new File(dirname+"/"+"TempFiles/cp-temp.hades");
+				File f2 = new File(dirname+"/"+"TempFiles/dec-T.hades");
+				f1.delete();f2.delete();
+				
 									
 		    	 //release resources
 		    	 in.close();out.close();fn.close();

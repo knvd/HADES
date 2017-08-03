@@ -1,7 +1,12 @@
 <%
-if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
-out.println("<h2><b>You are Not Logged in! One Needs to be BORN first, in Order to commit a SUICIDE :)</b></h2>");
-response.setHeader("Refresh", "2;url=index.jsp");
+if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) 
+{%>
+	<script language="javascript">
+	alert("You are not Logged in!");
+	</script>
+
+<%
+response.setHeader("Refresh", "0.1;url=loginpage.jsp");
 }
 
 else
@@ -9,7 +14,13 @@ else
 
 session.setAttribute("userid", null);
 session.invalidate();
-response.sendRedirect("index.jsp");
+//response.sendRedirect("index.jsp");
+%>
+<script language="javascript">
+	alert("Successfully Logged off! ");
+	</script>
+<jsp:include page="index.jsp" />
+<%
 }
 %>
 
