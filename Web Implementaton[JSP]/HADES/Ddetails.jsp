@@ -54,8 +54,8 @@ else
 </head>
 
 <div id="decdetail" style="width: 50%; padding-right: 20em; padding-left: 20em;">
-<img src = "images/JavaSparrow.jpg"
-         alt = "File Upload Sucess" height = "200" width = "300" align="middle" />
+<br /> <br /><img src = "images/JavaSparrow.jpg"
+         alt = "File Upload Sucess" height = "150" width = "170" align="middle" />
 <p> <h2> File Uploaded Successfully! </h2></p>
 
 <form action="decprocess.jsp" method="post">
