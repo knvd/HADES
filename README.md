@@ -2,7 +2,7 @@
 
 A H-ybrid A-lgorithm E-ncryption S-ystem (HADES) implementing both DES (modified) and RSA.
 
-[Name Background: Hades was the god of the UNDERWORLD in greek Mythology.]
+[Name Background: Hades was the god of the UNDERWORLD in greek Mythology.(https://en.wikipedia.org/wiki/Hades)]
 RSA is the most Secure Encryption Algorithm in the world as of now but Using RSA algorithm for data encryption is a time consuming process as it is 10x slower than normal DES. On the other hand DES or any Private key algorithm has the drawback of sharing of secret/key.
 
 Our Hybrid Algorithm (HADES) uses RSA encryption to encrypt the private key of user and Applies normal round encryption to the data with round specific keys generated from the user private key. The result is that user do not need to worry about sharing of key, He/She can share the key over any unreliable medium or give it to anyone, Because No one in the world (as of now) can decrypt it except the user for whom it was encrypted. The RSA is not used for data encryption which gives an edge over the speed of process. 
