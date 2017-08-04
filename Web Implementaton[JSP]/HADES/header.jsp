@@ -52,6 +52,7 @@ session.setAttribute("pkey",publickey);
 <html>
 <head>
 <link rel='stylesheet' type='text/css' href='stylesheet.css'/>
+<link rel='shortcut icon' type='text/css' href='images/favicon.ico'/>
 </head>
 
 

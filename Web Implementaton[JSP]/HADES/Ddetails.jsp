@@ -53,6 +53,23 @@ else
 <link rel='stylesheet' type='text/css' href='stylesheet.css'/>
 </head>
 
+<!--  loading circle-->
+<script language="javascript">
+function loading()
+{   
+    
+    document.getElementById('load').style.display = "block";
+}
+
+</script>
+	
+<div id="load" style="background-image : url('images/loading.gif'); display : none; position : fixed;  opacity : 0.9;  background-position : center; left : 0; bottom : 0; right : 0; top : 0; " >
+<a style="color: #ff0505; display : block; position: fixed; height: X px; width: Y px; left:44%; top:45%; margin-top:- X/2 px; margin-left:- Y/2 px;"><b><center><h2> Decrypting File... <br /> Please Wait!</h2></center></b></a>
+</div>
+ 
+<!--  loading circle-->
+
+
 <div id="decdetail" style="width: 50%; padding-right: 20em; padding-left: 20em;">
 <br /> <br /><img src = "images/JavaSparrow.jpg"
          alt = "File Upload Sucess" height = "150" width = "170" align="middle" />
@@ -62,14 +79,14 @@ else
 <input name="EnPkey" type="text" title="Cipher Text of Your Private Key" placeholder="Enter the Encrypted Private Key" minlength="50" required /><br /><br /> 
 
 <input type="text" name="ext" title="eg .txt,.jgp or pdf,mp4.. etc" placeholder="Enter the Extension to which file will be decrypted" required /> <br />
-<marquee>MODE must be SAME as used while Encryption (If you dont remember, It is written in CipherKey text file which was available to download along with Encrypted file... )</marquee><b>Mode of Decryption:</b>     <select name="mode" title ="More the Rounds.. More the time it consumes... More the Secuirity!" >
+<center>MODE must be SAME as used while Encryption of this file</center><b>Mode of Decryption:</b>     <select name="mode" title ="More the Rounds.. More the time it consumes... More the Secuirity!" >
   <option value="4">Faster(4-round)</option>
   <option value="8">Fast(8-round)</option>
   <option value="12">Slow(12-round)</option>
   <option value="16">Slower(16-round)</option>
 </select>
 <br />
-<input type="submit" value="Decrypt" />
+<input type="submit" value="Decrypt" onclick="loading()" />
 </form>
 </div>
 
