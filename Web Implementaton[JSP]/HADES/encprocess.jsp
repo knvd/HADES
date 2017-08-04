@@ -95,7 +95,7 @@ if ((request.getParameter("pkey") == null) || (request.getParameter("pkey") == "
 
 			<br />Download Your Encrypted Files:<br /><br />
 
-			<input type="radio" name="Dbutton" value="Efile">Encrypted File "<%=EncFname%>"
+			<input type="radio" name="Dbutton" value="Efile" checked >Encrypted File "<%=EncFname%>"
 			<br />
 			<input type="radio" name="Dbutton" value="Kfile">Encrypted-Key-File "<%=keyfile%>"
 			<br/> <br />
