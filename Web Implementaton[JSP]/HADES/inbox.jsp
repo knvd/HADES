@@ -1,47 +1,6 @@
 <%@ page import="hadesED.*"%>
 <%@ page import ="java.sql.*" %>
 
-<%@ page import ="java.io.FileInputStream" %>
-<%@ page import ="java.io.IOException" %>
-<%@ page import ="java.io.PrintWriter" %>
-<%@ page import ="javax.servlet.ServletException" %>
-<%@ page import ="javax.servlet.http.HttpServlet" %>
-<%@ page import ="javax.servlet.http.HttpServletRequest" %>
-<%@ page import ="javax.servlet.http.HttpServletResponse" %>
-
-<%!
-   public boolean download(HttpServletResponse response,String fname, String dirname)
-   {
-    
-String filename = fname; 
-String filepath = dirname;
-
-try{
-response.setContentType("text/html");
-PrintWriter ot = response.getWriter();  
-  response.setContentType("APPLICATION/OCTET-STREAM");
-	 
-  response.setHeader("Content-Disposition","attachment; filename=\"" + filename + "\"");   
-  
-  java.io.FileInputStream fileInputStream=new java.io.FileInputStream(filepath + filename);  
-            
-  int i;   
-  while ((i=fileInputStream.read()) != -1) {  
-    ot.write(i);   
-  }
-
-  fileInputStream.close(); 
-ot.close();  
-}
-catch(IOException e)
-{
-
-}  
- return true;
-   }
-%>
-
-
 <%
 String uname= (String)session.getAttribute("userid");
 if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) 
@@ -105,15 +64,6 @@ database dobj=new database();
 				sno++;
 				%>
 
-<%!
-   public boolean dwnld(HttpServletRequest request,HttpServletResponse response,int sno)
-   {	String efile= request.getParameter("ftxt"+sno);
-	String dir= request.getParameter("dtxt"+sno);   
-	download(response,efile,dir);
-return true;
-}
-%>
-
 			<tr align="center">
 			<td style="font-size: 120%; color: #000000;"><%=sno%> </td><td style="font-size: 140%; color: #ff3300;;"><%=sender%> </td> <td><%=subject%></td>
 <td>
@@ -126,11 +76,14 @@ folder=folder.substring(folder.indexOf("users"), folder.length());
 //String fn=file[sno-1].toString();
 %>
 <a target="_new" href="<%=folder+tfile[sno-1].toString()%>"> View Key Details</a><br /><br />
-<a target="_new" href="<%//=download(response,fn,dr)%>"> Download File</a>	
 
-<input type="text" id="filebox" name="ftxt<%=sno%>" display="none" value="<%=file[sno-1].toString()%>" readonly style="display: none;"/>
-<input type="text" id="dirbox" name="dtxt<%=sno%>" display="none" value="<%=edir[sno-1].toString()%>" readonly  style="display: none;"/>
-
+<form action=msgfiledwnld.jsp method=post>
+<input type="text" id="filebox" name="ftxt<%=sno%>"  value="<%=file[sno-1].toString()%>" readonly style="display: none;"/>
+<input type="text" id="dirbox" name="dtxt<%=sno%>"  value="<%=edir[sno-1].toString()%>" readonly  style="display: none;"/>
+<input type="text" name="fboxname"  value="ftxt<%=sno%>" readonly  style="display: none;"/>
+<input type="text" name="dboxname"  value="dtxt<%=sno%>" readonly  style="display: none;"/>
+<input type="submit" value="Download File" />
+</form>
 </td><br /> 
 			</tr>
 <%
