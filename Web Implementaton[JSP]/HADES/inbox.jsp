@@ -84,7 +84,9 @@ database dobj=new database();
 			<div style=" margin-left: 100px;"> <a style="text-align: left; color: #ff3300; "><h2> <%=curUser%>'s Inbox</h2></a></div>
 			
 			<table style="width: 85%;">
+			
 			<thead align="center"><tr><td><a style="color: #02c2f7; font-size: 150%;"><u>#</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>FROM:</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>Subject</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>Files</u></a></td></tr></thead>
+			<tr><td></td><td></td><td></td><td><a target="_new" href="outbox.jsp" style="color: #ff3300; text-align: right;"><h2><u>MY OUTBOX</u></h2></a></td></tr>
 
 
 
@@ -123,7 +125,7 @@ folder=folder.substring(folder.indexOf("users"), folder.length());
 //dr=dr.substring(dr.indexOf("users"), dr.length());
 //String fn=file[sno-1].toString();
 %>
-<a target="_new" href="<%=folder+tfile[sno-1].toString()%>"> View Key Details</a>
+<a target="_new" href="<%=folder+tfile[sno-1].toString()%>"> View Key Details</a><br /><br />
 <a target="_new" href="<%//=download(response,fn,dr)%>"> Download File</a>	
 
 <input type="text" id="filebox" name="ftxt<%=sno%>" display="none" value="<%=file[sno-1].toString()%>" readonly style="display: none;"/>
@@ -159,6 +161,8 @@ alert("<%=curUser%>'s Inbox is Empty");
 <a style="text-align: left; color: #ff3300; "><h2> <%=curUser%>'s Inbox</h2></a>			
 <table style="width: 80%;">
 <thead align="center"><tr><td><a style="color: #02c2f7; font-size: 150%;"><u>FROM:</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>Subject</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>Files</u></a></td></tr></thead>
+<tr><td></td><td></td><td></td><td><a target="_new" href="outbox.jsp" style="color: #ff3300; text-align: right;"><h2><u>MY OUTBOX</u></h2></a></td></tr>
+
 <tr ><td align="center"><h2>No One has Messaged You Yet! <br /><a href="home.jsp"> Back To Home</a></h2></td> </tr>
 </table>
 </center> 
