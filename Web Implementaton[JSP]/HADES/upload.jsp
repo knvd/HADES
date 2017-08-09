@@ -82,11 +82,16 @@ else
 					File decdir = new File(filePath);	
 					if(!decdir.exists())
 						decdir.mkdir();
+					if(!fileName.contains(".hades")){%>
+					<script>alert("Oops! Looks You Just Lost it! Encrypted File will have .hades extension eg. 'abc.hades'");</script>
+					<%response.setHeader("Refresh", "0.1;url=decUpld.jsp");}
+					else{					
 					file = new File( filePath + fileName) ;	
 					fi.write( file ) ;
 					 session.setAttribute("dirname", filePath);
 					session.setAttribute("fname", fileName);		 	
 					response.sendRedirect("Ddetails.jsp");
+					}
 				 }
 				else
 				{
