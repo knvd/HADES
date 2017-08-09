@@ -18,12 +18,12 @@ else
 	<% String flag; %>
 
 	 <h1>ENCRYPTION</h1>
-	<p align-items=center>&nbsp;
+	&nbsp;	
 	<form action="upload.jsp" method="post" enctype="multipart/form-data">
 	Choose the File to be <b>Encrypted</b>: <input accept=" " name="file" type="file" size="50"/ required>
 	<br /><br /><input type="submit" name= "submit" value="Upload to Encrypt" onclick='form.action='<%flag ="enc"; session.setAttribute("flg",flag);%>'' />
 	</form>
-	</p>
+	
 	</body>
 	</html>
 	</div>
