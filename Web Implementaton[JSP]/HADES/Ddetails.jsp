@@ -57,7 +57,7 @@ else
 <script language="javascript">
 function loading()
 {   
-    
+   if(document.getElementById('enpk').value.length >=50 && document.getElementById('xt').value.length>=2)    
     document.getElementById('load').style.display = "block";
 }
 
@@ -76,9 +76,9 @@ function loading()
 <p> <h2> File Uploaded Successfully! </h2></p>
 
 <form action="decprocess.jsp" method="post">
-<input name="EnPkey" type="text" title="Cipher Text of Your Private Key" placeholder="Enter the Encrypted Private Key" minlength="50" required /><br /><br /> 
+<input name="EnPkey" id="enpk" type="text" title="Cipher Text of Your Private Key" placeholder="Enter the Encrypted Private Key" minlength="50" required /><br /><br /> 
 
-<input type="text" name="ext" title="eg .txt,.jgp or pdf,mp4.. etc" placeholder="Enter the Extension to which file will be decrypted" required /> <br />
+<input type="text" name="ext" id="xt" title="eg .txt,.jgp or pdf,mp4.. etc" placeholder="Enter the Extension to which file will be decrypted" monlength="2" required /> <br />
 <center>MODE must be SAME as used while Encryption of this file</center><b>Mode of Decryption:</b>     <select name="mode" title ="More the Rounds.. More the time it consumes... More the Secuirity!" >
   <option value="4">Faster(4-round)</option>
   <option value="8">Fast(8-round)</option>

@@ -62,7 +62,7 @@ else
 <script language="javascript">
 function loading()
 {   
-    
+  if(document.getElementById('pk').value.length >=16 && document.getElementById('pubk').value.length>=100)  
     document.getElementById('load').style.display = "block";
 }
 
@@ -94,7 +94,7 @@ function insertText(txt)
 <p> <h2> File Uploaded Successfully! </h2><br /></p>
 
 <form action="encprocess.jsp" method="post">
-<input name="pkey" type="text" title="Enter and Forget. You won't need it later!" placeholder="One Time Private Key" minlength="16" required /><br />
+<input name="pkey" type="text" id="pk" title="Enter and Forget. You won't need it later!" placeholder="One Time Private Key" minlength="16" required /><br />
 <center>Use your OWN PUBLIC KEY if You want to ENCRYPT it for YOURSELF</center> 
 <input name="pubkey" type="text" id="pubk" title="Valid Public key consists of Numbers Only" minlength="100" placeholder="Enter Public key of Intended User(Only He/She can Decrypt the file)" required />
 <br /><input type="button" value="Use My Own Public Key" title="Only You can Decrypt This file!" onclick="insertText()" /><br /><br />

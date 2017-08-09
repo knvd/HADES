@@ -24,8 +24,12 @@ else
 	if(!dobj.connect("localhost","HADES","root","toor"))
 		out.println("\nError Connecting to Database");
 
-//if table does not exist
+//if tables do not exist
 dobj.insert("CREATE TABLE IF NOT EXISTS members (id int(10) unsigned NOT NULL PRIMARY KEY auto_increment, first_name varchar(45) NOT NULL, email varchar(45) NOT NULL, uname varchar(45) NOT NULL,pass varchar(45) NOT NULL,regdate DATE  NOT NULL,e varchar(2500) NOT NULL DEFAULT 0,d varchar(2500) NOT NULL DEFAULT 0,n varchar(2500) NOT NULL DEFAULT 0);");
+
+dobj.insert("CREATE TABLE IF NOT EXISTS messages (id int(10) unsigned NOT NULL PRIMARY KEY auto_increment, reciever varchar(45) NOT NULL, sender varchar(45) NOT NULL, subject varchar(200) NOT NULL,file varchar(250) NOT NULL, tfile varchar(250) NOT NULL,edir varchar(250) NOT NULL, txtdir varchar(250) NOT NULL);");
+
+
 
 if(dobj.count("select * from members where uname='"+user+"';")<=0)
 {

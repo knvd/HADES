@@ -2,7 +2,7 @@
 <%@ page import="hadesED.*"%>
 <%@ page import ="java.sql.*" %>
 <%@ page import="java.math.BigInteger"%>
-
+			
 <%
 if ((request.getParameter("pkey") == null) || (request.getParameter("pkey") == "")) 
 { %>
@@ -86,26 +86,27 @@ if ((request.getParameter("pkey") == null) || (request.getParameter("pkey") == "
 			session.setAttribute("Kdirname",keyloc);
 
 			%>
-
 			<br /><br />File ENCRYPTION Successful! Encrypted File: <b>"<%=EncFname%>"</b>. <br/><br/>
 			Your Encrypted-Key (Cipher Text) <b>"<%=keyfile%>"</b> Generated Successfully!
 			<br/><br/>
 
-			<form action="FileKeyDwnld.jsp" method="post">
+			<form action="FileKeyDwnld.jsp" method="post" style="display: inline;">
 
 			<br />Download Your Encrypted Files:<br /><br />
 
-			<input type="radio" name="Dbutton" value="Efile" checked >Encrypted File "<%=EncFname%>"
+			<input type="radio" name="Dbutton" value="Efile" checked>Encrypted File "<%=EncFname%>"
 			<br />
 			<input type="radio" name="Dbutton" value="Kfile">Encrypted-Key-File "<%=keyfile%>"
 			<br/> <br />
 			 <input type="submit" value="Download">
 
 			</form>
-
-			<form action="home.jsp" method="post">
-			<input type="submit" name="Dbutton" value="Back to Home">			
+			
+			<form action="sendfile.jsp" method="post" style="display: inline;">
+			<input type="submit" value="Send as Message to Another User">			
 			</form>
+
+			
 
 
 

@@ -7,8 +7,8 @@
 alert("Session Expired!");
 
 </script>
-<% 	out.println("<p><b><h2>Session Expired! Page will auto refresh</h2></b><p>");
-	response.setHeader("Refresh", "1;url=encUpld.jsp");
+<% 	
+	response.setHeader("Refresh", "0.1;url=encUpld.jsp");
 }
 else{
 

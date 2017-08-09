@@ -19,7 +19,7 @@ if ((request.getParameter("pwd") == null) || (request.getParameter("pwd") == "")
 	</head>
 	<body><br />
 	<center>
-	<p><h2>Permanently Delete <%=uname%>'s Account </h2></p>
+	<p><h2>Permanently Delete <%=uname%>'s Account! </h2></p>
 	<form action="delProfile.jsp" method="post" style="width: 30%;">
 		<input type="password" name="pwd" placeholder="Enter Your Password to Confirm" title="We are sad to watch you leaving.." minlength="6" required /><br />
 	<input type="submit" value="Confirm Delete" title="GoodBye!"  />

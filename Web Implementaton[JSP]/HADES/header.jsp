@@ -31,9 +31,7 @@ if (!dobj.connect("localhost","HADES","root","toor"))
 			out.println("Database Connection Refused!");
 try
 {
-	//if table does not exist
-dobj.insert("CREATE TABLE IF NOT EXISTS members (id int(10) unsigned NOT NULL PRIMARY KEY auto_increment, first_name varchar(45) NOT NULL, email varchar(45) NOT NULL, uname varchar(45) NOT NULL,pass varchar(45) NOT NULL,regdate DATE  NOT NULL,e varchar(2500) NOT NULL DEFAULT 0,d varchar(2500) NOT NULL DEFAULT 0,n varchar(2500) NOT NULL DEFAULT 0);");	
-
+	
 rs=dobj.select("select e from members where uname='"+username+"';");
 while(rs.next())
 	{
@@ -140,6 +138,7 @@ else
  <li><a href="#contact">Contact</a></li>
   <li><a href="#about">About</a></li>
 <li style="float: right;"><a href="myprofile.jsp">My Profile</a></li>
+<li style="float: right;"><a href="inbox.jsp"><b>Inbox</b></a></li>
  <li style="float: right;"><a href="logout.jsp">Log Out</a></li>
 <%}
 %>
