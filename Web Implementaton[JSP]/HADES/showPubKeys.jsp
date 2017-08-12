@@ -31,9 +31,8 @@ else
 			</head>
 			<body>
 			<center>
-			 <h2> To Encrypt for a Specific USER, use His/Her respective Public key. <br />(Only the respective user can decrypt the file later)</h2>
-			
-			<table style="width: 70%;">
+			 <h2><br /> To Encrypt for a Specific USER, use His/Her respective Public key. <br />(Only the respective user can decrypt the file later)</h2>			
+			<table style="width: 70%; ">
 			<thead align="center"><tr><td><a style="color: #02c2f7; font-size: 150%;"><u>User Name</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>Public Key</u></a></td></tr></thead>
 		<%
 			rs=dobj.select("select uname,e from members;");

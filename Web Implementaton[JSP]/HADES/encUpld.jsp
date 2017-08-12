@@ -16,9 +16,12 @@ else
 	</head>
 
 	<% String flag; %>
-
+		
+&nbsp;
+<marquee style="height: 20px; padding-top: 05px;" bgcolor="#02c2f7">CURRENT UPLOAD LIMIT = <b>150 MB</b></marquee>
 	 <h1>ENCRYPTION</h1>
-	&nbsp;	
+
+&nbsp;
 	<form action="upload.jsp" method="post" enctype="multipart/form-data">
 	Choose the File to be <b>Encrypted</b>: <input accept=" " name="file" type="file" size="50"/ required>
 	<br /><br /><input type="submit" name= "submit" value="Upload to Encrypt" onclick='form.action='<%flag ="enc"; session.setAttribute("flg",flag);%>'' />

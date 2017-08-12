@@ -92,7 +92,7 @@ else{
 
 		<form action="DownloadServlet.jsp" method="post">
 		<br />Download Your Decrypted File:<br /><br />
-		<input type="radio" name="Dbutton" value="Efile">Decrypted File "<%=DecFname%>"
+		<input type="radio" name="Dbutton" value="Efile" checked >Decrypted File "<%=DecFname%>"
 		<br/> <br />
 		<input type="submit" value="Download">
 		</form>

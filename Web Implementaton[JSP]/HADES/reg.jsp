@@ -61,7 +61,7 @@ else
 	</script>
 <jsp:include page="header.jsp" />
 <% 
-out.println("<br /><h2>You are Already Logged in as '"+(session.getAttribute("userid"))+"'</h2><br />");
+out.println("<br /><h2>You are Already Logged in as <a href='myprofile.jsp'>'"+(session.getAttribute("userid"))+"'</a></h2> <br />");
 out.println("<center><h2><a href='logout.jsp'>Log Out</a></h2><br /><br /></center>");
 %>
 <jsp:include page="footer.jsp" />

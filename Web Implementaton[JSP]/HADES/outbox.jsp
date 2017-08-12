@@ -19,7 +19,7 @@ database dobj=new database();
 	{
 	if (!dobj.connect("localhost","HADES","root","toor"))
 		out.println("Database Connection Refused!");
-	int total=dobj.count("select * from messages where reciever='"+curUser+"';");
+	int total=dobj.count("select * from messages where sender='"+curUser+"';");
 
 	String reciever="",subject="",file="",tfile="";
 
@@ -41,7 +41,7 @@ database dobj=new database();
 			<table style="width: 85%;">
 			<thead align="center"><tr><td><a style="color: #02c2f7; font-size: 150%;"><u>#</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>SENT TO:</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>Subject</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>Files Sent</u></a></td></tr></thead>
 
-<tr><td colspan="4"><a target="_new" href="inbox.jsp" style="color: #ff3300; text-align: right;"><h2><u>INBOX</u></h2></a></td></tr>
+<tr><td colspan="4"><a target="_new" href="inbox.jsp" style="color: #ff3300; float: right;"><h2><u>INBOX</u></h2></a></td></tr>
 
 		<%
 
@@ -87,7 +87,7 @@ alert("<%=curUser%>'s Outbox is Empty");
 </head>
 <body>
 <center>
-<a style="text-align: left; color: #ff3300; "><h2> <%=curUser%>'s Inbox</h2></a>			
+<a style="text-align: left; color: #ff3300; "><h2> <%=curUser%>'s Outbox</h2></a>			
 <table style="width: 80%;">
 <thead align="center"><tr><td><a style="color: #02c2f7; font-size: 150%;"><u>FROM:</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>Subject</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>Files</u></a></td></tr></thead>
 <tr><td colspan="3"><a target="_new" href="inbox.jsp" style="color: #ff3300; text-align: right;"><h2><u>INBOX</u></h2></a></td></tr>

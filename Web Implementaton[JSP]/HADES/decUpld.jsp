@@ -17,7 +17,8 @@ else
 </head>
 
 <% String flag; %>
-
+&nbsp;
+<marquee style="height: 20px; padding-top: 05px;" bgcolor="#02c2f7">CURRENT UPLOAD LIMIT = <b>150 MB</b></marquee>
  <h1>DECRYPTION</h1>
 &nbsp;
 <form action="upload.jsp" method="post" enctype="multipart/form-data">

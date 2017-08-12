@@ -123,22 +123,22 @@ else
     if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
 %>
 <li><a href="index.jsp">Home</a></li>
- <li><a href="#contact">Contact</a></li>
-  <li><a href="#about">About</a></li>
+ <li><a href="contact.jsp">Contact</a></li>
+  <li><a href="about.jsp">About</a></li>
   <li style="float: right;"><a href="loginpage.jsp">Login</a></li>
 <li style="float: right;"><a href="reg.jsp">Register</a></li>
 
 <%}
 else
 {%>
-  <li><a href="index.jsp">Home</a></li>
-<li><a href="showPubKeys.jsp">Browse Public Keys</a></li>
+  <li><a target="_parent" href="index.jsp">Home</a></li>
+<li><a target="_new" href="showPubKeys.jsp">Browse Public Keys</a></li>
   <li><a href="encUpld.jsp">Encrypt File</a></li>
   <li><a href="decUpld.jsp">Decrypt File</a></li>
- <li><a href="#contact">Contact</a></li>
-  <li><a href="#about">About</a></li>
-<li style="float: right;"><a href="myprofile.jsp">My Profile</a></li>
-<li style="float: right;"><a href="inbox.jsp"><b>Inbox</b></a></li>
+ <li><a target="_new" href="contact.jsp">Contact</a></li>
+  <li><a target="_new" href="about.jsp">About</a></li>
+<li style="float: right;"><a target="_new" href="myprofile.jsp">My Profile</a></li>
+<li style="float: right;"><a target="_new" href="inbox.jsp"><b>Inbox</b></a></li>
  <li style="float: right;"><a href="logout.jsp">Log Out</a></li>
 <%}
 %>

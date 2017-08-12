@@ -86,28 +86,24 @@ if ((request.getParameter("pkey") == null) || (request.getParameter("pkey") == "
 			session.setAttribute("Kdirname",keyloc);
 
 			%>
+			<center>
 			<br /><br />File ENCRYPTION Successful! Encrypted File: <b>"<%=EncFname%>"</b>. <br/><br/>
 			Your Encrypted-Key (Cipher Text) <b>"<%=keyfile%>"</b> Generated Successfully!
 			<br/><br/>
 
 			<form action="FileKeyDwnld.jsp" method="post" style="display: inline;">
-
 			<br />Download Your Encrypted Files:<br /><br />
-
 			<input type="radio" name="Dbutton" value="Efile" checked>Encrypted File "<%=EncFname%>"
 			<br />
 			<input type="radio" name="Dbutton" value="Kfile">Encrypted-Key-File "<%=keyfile%>"
 			<br/> <br />
 			 <input type="submit" value="Download">
-
 			</form>
 			
 			<form action="sendfile.jsp" method="post" style="display: inline;">
-			<input type="submit" value="Send as Message to Another User">			
+			<input type="submit" value="Send as Message to Another User">	<br/> <br />		
 			</form>
-
-			
-
+			</center>
 
 
 			</html>

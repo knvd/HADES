@@ -18,6 +18,10 @@ database dobj=new database();
 	{
 	if (!dobj.connect("localhost","HADES","root","toor"))
 		out.println("Database Connection Refused!");
+
+//if msg table doesnt exist create it
+dobj.insert("CREATE TABLE IF NOT EXISTS messages (id int(10) unsigned NOT NULL PRIMARY KEY auto_increment, reciever varchar(45) NOT NULL, sender varchar(45) NOT NULL, subject varchar(200) NOT NULL,file varchar(250) NOT NULL, tfile varchar(250) NOT NULL,edir varchar(250) NOT NULL, txtdir varchar(250) NOT NULL);");
+
 	int total=dobj.count("select * from messages where reciever='"+curUser+"';");
 
 	String sender="",subject="";
@@ -45,7 +49,7 @@ database dobj=new database();
 			<table style="width: 85%;">
 			
 			<thead align="center"><tr><td><a style="color: #02c2f7; font-size: 150%;"><u>#</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>FROM:</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>Subject</u></a></td><td><a style="color: #02c2f7; font-size: 150%;"><u>Files</u></a></td></tr></thead>
-			<tr><td colspan="4"><a target="_new" href="outbox.jsp" style="color: #ff3300; text-align: right;"><h2><u>MY OUTBOX</u></h2></a></td></tr>
+			<tr><td colspan="4"> <a target="_new" href="outbox.jsp" style="color: #ff3300; float: right;"><h2><u>MY OUTBOX</u></h2></a></td></tr>
 
 
 

@@ -44,7 +44,7 @@ if ((request.getParameter("subject") == null) || (request.getParameter("subject"
 	<%	try
 		{
 	
-		rs=dobj.select("select uname from members;");
+		rs=dobj.select("select uname from members where uname NOT IN('"+ curUser +"');");
 		while(rs.next())
 			{
 			String users=rs.getString("uname");

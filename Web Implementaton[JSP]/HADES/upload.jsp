@@ -29,8 +29,8 @@ else
 	String flag =(String)session.getAttribute("flg");
 	  File file ;
 	   String filename="";
-	   int maxFileSize = 250*1024*1024;	//set to 250 MB
-	   int maxMemSize = 250*1024*1024;
+	   int maxFileSize = 150*1024*1024;	//set to 150 MB
+	   int maxMemSize = 150*1024*1024;
 	   String Dir = request.getRealPath("/users/");
 	File fdir = new File(Dir);
 	if(!fdir.exists())

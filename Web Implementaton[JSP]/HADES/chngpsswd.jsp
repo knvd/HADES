@@ -24,7 +24,7 @@ if ((request.getParameter("oldpwd") == null) || (request.getParameter("oldpwd") 
 	<input type="text" name="oldpwd" placeholder="Enter Your Old Password" title="The password you want to get rid of.." minlength="6" required /><br />
 	<input type="password" name="newpwd" placeholder="Enter Your New Password" title="The password you are excited to set.." minlength="6"required /><br />
 	<input type="password" name="nwpwd" placeholder="Enter the New Password Again" title="Just checking your memory.." minlength="6" required /><br />
-	<input type="submit" value="Reset Password" title="The password you want to get rid of.."  />
+	<input type="submit" value="Reset Password" title="Lets Change It.."  />
 	</form>
 	</center><br />
 	</body>
@@ -41,7 +41,19 @@ if ((request.getParameter("oldpwd") == null) || (request.getParameter("oldpwd") 
 				
 				if (!dobj.connect("localhost","HADES","root","toor"))
 					out.println("Database Connection Refused!");
-				if(dobj.count("select * from members where pass='"+oldpwd+"';")>=1)
+			rs=dobj.select("select pass from members where pass='" + oldpwd + "';");
+			String pw="";
+			while(rs.next())
+			{
+				pw=rs.getString("pass");
+			}
+
+			if(oldpwd.equals(newpwd)){%>
+				<script language="javascript">
+				alert("Whats the fun in Setting the Same Password Again! Old and New Passwords Cant be Same!");
+				</script>
+			<% response.setHeader("Refresh", "0.1;url=myprofile.jsp");}
+			else if (pw.equals(oldpwd)) 
 				{					
 					dobj.insert("UPDATE members SET pass='"+newpwd+"' WHERE uname='"+uname+"';");
 					%>
@@ -49,7 +61,8 @@ if ((request.getParameter("oldpwd") == null) || (request.getParameter("oldpwd") 
 					alert("Password Changed Successfully!");
 					</script>
 					<%  response.setHeader("Refresh", "0.1;url=logout.jsp");		
-				} else { %>
+				} 
+			else { %>
 				<script language="javascript">
 				alert("Wrong Old Password!");
 				</script>

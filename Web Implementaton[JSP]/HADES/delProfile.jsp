@@ -36,15 +36,30 @@ if ((request.getParameter("pwd") == null) || (request.getParameter("pwd") == "")
 				
 				if (!dobj.connect("localhost","HADES","root","toor"))
 					out.println("Database Connection Refused!");
-				if(dobj.count("select * from members where pass='"+pwd+"';")>=1)
+
+			rs=dobj.select("select pass from members where pass='" + pwd + "';");
+			String pw="";
+			while(rs.next())
+			{
+				pw=rs.getString("pass");
+			}
+
+			if(pwd.equals(pw))
 				{					
 					dobj.insert("DELETE FROM members WHERE uname='"+uname+"';");
-					%>
+					//Delete Users Directory on Server
+					<%--String strProjectDir = request.getRealPath("/users/"+uname);
+					File ProjectDir = new File(strProjectDir); 
+					if(ProjectDir.exists()) 
+						ProjectDir.delete(); --%>
+					
+				%>
 					<script language="javascript">
 					alert("Acount deleted Successfully!");
 					</script>
-					<%  response.setHeader("Refresh", "0.1;url=logout.jsp");		
-				} else { %>
+				<%  response.setHeader("Refresh", "0.1;url=logout.jsp");		
+				}
+			else 	{ %>
 				<script language="javascript">
 				alert("Wrong Password!");
 				</script>

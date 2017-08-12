@@ -17,8 +17,14 @@
 	ResultSet rs;
 		if (!dobj.connect("localhost","HADES","root","toor"))
 				out.println("Database Connection Refused!");
-	rs=dobj.select("select * from members where uname='" + userid + "' and pass='" + pwd + "'");
-	if (rs.next()) {
+	rs=dobj.select("select uname,pass from members where uname='" + userid + "' and pass='" + pwd + "';");
+	String un="",pw="";
+	while(rs.next())
+	{
+		un=rs.getString("uname");
+		pw=rs.getString("pass");
+	}
+	if (un.equals(userid) && pw.equals(pwd)) {
 		session.setAttribute("userid", userid);
 		//out.println("welcome " + userid);
 //make user folder if not exists
@@ -39,7 +45,7 @@
 <link rel='stylesheet' type='text/css' href='stylesheet.css'/>
 </head>
 <script language="javascript">
-	alert("No User named <%=userid%> Exists! Invalid username/password !");
+	alert("Invalid UserId/Password. Try Again !");
 	</script>
 <jsp:include page="loginpage.jsp" />
 </html>
