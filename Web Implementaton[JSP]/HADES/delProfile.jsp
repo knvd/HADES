@@ -1,5 +1,8 @@
 <%@ page import="hadesED.*"%>
 <%@ page import ="java.sql.*" %>
+<%@ page import ="java.io.*" %>
+<%@ page import ="org.apache.commons.io.FileUtils" %>
+ 
 
 <%
 String uname= (String)session.getAttribute("userid");
@@ -48,10 +51,10 @@ if ((request.getParameter("pwd") == null) || (request.getParameter("pwd") == "")
 				{					
 					dobj.insert("DELETE FROM members WHERE uname='"+uname+"';");
 					//Delete Users Directory on Server
-					<%--String strProjectDir = request.getRealPath("/users/"+uname);
+					String strProjectDir = request.getRealPath("/users/"+uname);
 					File ProjectDir = new File(strProjectDir); 
 					if(ProjectDir.exists()) 
-						ProjectDir.delete(); --%>
+						FileUtils.deleteDirectory(ProjectDir);
 					
 				%>
 					<script language="javascript">
