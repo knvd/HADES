@@ -52,8 +52,8 @@
 
 </body>
 </html>
-
-<%} 
+<jsp:include page="footer.jsp" />
+<% } 
 else 
 {%>
 <script language="javascript">
